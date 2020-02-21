@@ -1,1 +1,0 @@
-cout<<can_left<<' '<<(index1>-1)<<' '<<index2<<' '<<nums2.size()-1<<endl;
