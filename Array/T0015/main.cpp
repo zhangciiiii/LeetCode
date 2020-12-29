@@ -13,24 +13,26 @@ using namespace std;
 
 class Solution {
 public:
-    int threeSumClosest(vector<int>& nums, int target) {
+    vector<vector<int>> threeSum(vector<int>& nums) {
         int left=0;
         int right = int(nums.size()-1);
-        int result = INT_MAX;
-        int current_sum = 0;
+        vector<vector<int>> result;
         
         sort(nums.begin(), nums.end());
-        for (int i=0;i<nums.size()-1; ){
+        for (int i=0;i<nums.size(); ){
             left = i+1;
             right = int(nums.size()-1);
             while(left < right){
-                current_sum = nums[i] + nums[left] + nums[right];
-                result =  abs(current_sum-target)>abs(result-target)? result:current_sum;
-                if (current_sum == target){
-                    return current_sum;
+                if (nums[i] + nums[left] + nums[right] == 0){
+                    vector<int> tmp={nums[i], nums[left], nums[right]};
+                    result.push_back(tmp);
+                    while (left < right && nums[left]==nums[left+1]) {
+                        ++left;
+                    }
+                    ++left;
                 }
                 
-                else if (current_sum < target){
+                else if (nums[i] + nums[left] + nums[right] < 0){
                     while (left < right && nums[left]==nums[left+1]) {
                         ++left;
                     }
@@ -56,10 +58,6 @@ public:
 
 int main() {
     // insert code here...
-    Solution T;
-    vector<int> nums={1,1,1,1};
-    cout<<0<<endl;
-    int x = T.threeSumClosest(nums, 100);
-    cout<<x<<endl;
+    cout<< "Hello, World!\n";
     return 0;
 }
