@@ -29,8 +29,8 @@ public:
 
 int main() {
     // insert code here...
-    vector<int> nums = {-2,1,-3,4,-1,2,1,-5,4};
+    vector<int> nums = {3,4,-1,1};
     Solution sol;
-    sol.maxSubArray(nums);
+    
     return 0;
 }
