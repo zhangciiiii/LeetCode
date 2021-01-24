@@ -11,7 +11,6 @@
 #include<map>
 #include <algorithm>
 using namespace std;
-
 class Solution {
 public:
     vector<vector<int>> generateMatrix(int n) {
@@ -60,11 +59,13 @@ public:
     }
     
 };
+    
+
 
 int main() {
     // insert code here...
-    int n = 3;
+    vector<int> nums = {3,4,-1,1};
     Solution sol;
-    sol.generateMatrix(n);
+    
     return 0;
 }
