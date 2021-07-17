@@ -10,44 +10,40 @@
 #include<stack>
 #include<map>
 #include <algorithm>
+#include<queue>
 using namespace std;
 
+// 考点在于如何控制空间复杂度
+// 有O(n)级别的复杂度，但是我觉得会O(m+n)就够了
 class Solution {
 public:
-    vector<vector<int>> permute(vector<int>& nums) {
-        vector<vector<int>> result;
-        mBackTrack(nums, result, 0);
-        return result;
-    }
-    
-    //回溯算法：思路是将当前指针所在的元素与数组后面的元素都相交换，
-    //移动指针，指针前的元素相当于固定了，而指针后的元素需要调用递归继续交换
-    void mBackTrack(vector<int>& nums, vector<vector<int>>& result, int ExchangedID)
-    {
-        //当指针到达数组末尾，代表所有元素都固定了，压入结果中
-        if (ExchangedID == nums.size())
-            result.push_back(nums);
-        
-        //指针ExchangedID以前的元素代表已经固定，需要关心其后的元素
-        //采用遍历，交换指针ExchangedID的元素与其后遍历的元素，并在固定后进入下一轮递归
-        //递归结束后需要交换数组元素还原。
-        for(int i = ExchangedID; i < nums.size(); ++ i)
+    void setZeroes(vector<vector<int>>& matrix) {
+        bool *vbRow = new bool [matrix.size()] {false};
+        bool *vbCol = new bool [matrix[0].size()] {false};
+        for(int i = 0; i < matrix.size(); ++i)
         {
-            swap(nums[ExchangedID], nums[i]);
-            mBackTrack(nums, result, ExchangedID + 1);
-            swap(nums[ExchangedID], nums[i]);
+            for(int j = 0; j < matrix[0].size(); ++j)
+            {
+                if(matrix[i][j] == 0)
+                {
+                    vbRow[i] = true;
+                    vbCol[j] = true;
+                }
+            }
         }
-        return;
+        for(int i = 0; i < matrix.size(); ++i)
+        {
+            for(int j = 0; j < matrix[0].size(); ++j)
+            {
+                if(vbRow[i] || vbCol[j])
+                    matrix[i][j] = 0;
+            }
+        }
     }
 };
+
 int main() {
     // insert code here...
-    vector<int> nums{1,2,3};
-    
-    for(auto it = nums.begin(); it != nums.end(); ++it)
-    {
-        cout << *it << endl;
-    }
     return 0;
 }
 
